@@ -13,7 +13,6 @@
 	>
 		EN
 	</button>
-	<span class="separator">/</span>
 	<button
 		class:active={$currentLanguage === 'ja'}
 		on:click={() => setLanguage('ja')}
@@ -27,7 +26,7 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        font-family: 'Urbanist', sans-serif;
+        font-family: 'greycliff-cf', sans-serif;
         font-size: 1rem;
         font-weight: 500;
     }

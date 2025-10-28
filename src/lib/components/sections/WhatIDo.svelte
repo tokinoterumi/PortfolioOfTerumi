@@ -79,7 +79,7 @@
 						{role.content.subtitle}
 					</h4>
 					<p class="mobile-role-description">
-						{role.content.description}
+						{@html role.content.description}
 					</p>
 				</div>
 			</div>

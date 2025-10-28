@@ -11,9 +11,9 @@ export async function load() {
 			order_by: 'popular' // Show popular photos first
 		});
 
-		// Transform data for the Gallery component
+		// Transform project-content for the Gallery component
 		const processedPhotos = photos.map(photo => {
-			// Check if we have custom caption data for this photo
+			// Check if we have custom caption project-content for this photo
 			const captionData = customCaptions.get(photo.id);
 
 			return {
@@ -28,7 +28,7 @@ export async function load() {
 				likes: photo.likes,
 				downloads: photo.downloads,
 				color: photo.color,
-				// Use custom captions if available, otherwise fallback to Unsplash data
+				// Use custom captions if available, otherwise fallback to Unsplash project-content
 				title: captionData?.title || photo.description || 'Untitled',
 				story: captionData?.story || photo.alt || 'A wanderer\'s moment captured'
 			};

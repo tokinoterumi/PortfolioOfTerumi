@@ -84,14 +84,14 @@
 		<div class="mb-24 grid grid-cols-1 items-end gap-16 lg:mb-24 lg:grid-cols-[2fr_1fr] lg:gap-16">
 			<div class="lg:text-left">
 				<h2
-					class="mb-4 text-6xl leading-tight font-light md:text-4xl lg:text-5xl"
-					style="font-family: 'Urbanist', sans-serif; color: #333333;"
+					class="mb-4 leading-tight font-bold text-4xl"
+					style="font-family: 'greycliff-cf', sans-serif; color: #333333;"
 				>
-					Footprints
+					FOOTPRINTS
 				</h2>
 				<p
 					class="m-0 text-lg leading-relaxed font-normal"
-					style="font-family: 'Urbanist', sans-serif; color: #AAB2BD;"
+					style="font-family: 'greycliff-cf', sans-serif; color: #AAB2BD;"
 				>
 					A wanderer's diary
 				</p>
@@ -125,7 +125,7 @@
 							<div class="text-center">
 								<span
 									class="text-4xl font-light text-white"
-									style="font-family: 'Urbanist', sans-serif;">+</span
+									style="font-family: 'greycliff-cf', sans-serif;">+</span
 								>
 							</div>
 						</div>
@@ -186,10 +186,10 @@
 			/>
 
 			<div class="absolute right-0 -bottom-12 left-0 text-center text-white">
-				<p class="m-0 mb-2 text-base" style="font-family: 'Urbanist', sans-serif;">
+				<p class="m-0 mb-2 text-base" style="font-family: 'greycliff-cf', sans-serif;">
 					{galleryPhotos[currentImageIndex].alt}
 				</p>
-				<span class="text-sm" style="font-family: 'Urbanist', sans-serif; color: #AAB2BD;">
+				<span class="text-sm" style="font-family: 'greycliff-cf', sans-serif; color: #AAB2BD;">
 					{currentImageIndex + 1} / {galleryPhotos.length}
 				</span>
 			</div>

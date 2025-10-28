@@ -1,16 +1,16 @@
 <script>
-	// Data for skills and impact.
 	const impact = {
-		views: '660K+',
-		downloads: '3.6K+',
+		views: '730K+',
+		downloads: '4K+',
 		citation: {
 			label: 'World Economic Forum',
-			link: 'https://link-to-wef-paper.com' // Placeholder
+			link: 'https://jp.weforum.org/stories/2024/07/art-festival-impact-aging-communities/'
 		}
 	};
 	const skills = {
 		development: [
 			'SvelteKit',
+			'SwiftUI',
 			'Tailwind CSS',
 			'JavaScript',
 			'Shopify Liquid',
@@ -33,7 +33,6 @@
 
 <section class="about-section">
 	<div class="content-wrapper">
-
 		<div class="narrative-row">
 			<header class="section-header">
 				<h1 class="headline">WHO IS TERUMI</h1>
@@ -44,7 +43,7 @@
 						Born in Hainan, a tropical island as large as Kyūshū, and with living experience in Shikoku, the smallest main island of Japan, Terumi describes herself as a drifting islander.
 					</p>
 					<p>
-						Terumi's adventurous nature continually drives her to explore and create, which has led her becoming a skillful photographer and has now focused her ambitions on a career as a web developer. She continues leveraging technology as a powerful tool to materialize her observations.
+						Terumi's adventurous nature continually drives her to explore and create, which has led her becoming a skillful photographer and has now focused her ambitions on a career as a digital solutions developer. She continues leveraging technology as a powerful tool to materialize her observations.
 					</p>
 				</div>
 				<div class="manifesto-text">
@@ -65,7 +64,9 @@
 				<div class="impact-grid">
 					<div class="impact-item">
 						<span class="impact-metric">{impact.views}</span>
-						<span class="impact-label">Views on Unsplash</span>
+						<a href="https://unsplash.com/@driftingislander" target="_blank" rel="noopener noreferrer" class="impact-label citation-link">
+							Views on Unsplash
+						</a>
 					</div>
 					<div class="impact-item">
 						<span class="impact-metric">{impact.downloads}</span>
@@ -100,7 +101,7 @@
 						</ul>
 					</div>
 					<div class="skill-category">
-						<h3 class="category-title">Gadgets & Tools</h3>
+						<h3 class="category-title">Gadgets</h3>
 						<ul>
 							{#each skills.gadgetsAndTools as skill}
 								<li>{skill}</li>
@@ -156,7 +157,7 @@
         margin-bottom: 1.5rem;
     }
     .manifesto-title {
-        font-family: 'Urbanist', sans-serif;
+        font-family: 'greycliff-cf', sans-serif;
         font-size: 1.25rem;
         font-weight: 600;
         color: var(--text-primary);
@@ -178,7 +179,7 @@
         gap: 4rem;
     }
     .data-section-title {
-        font-family: 'Urbanist', sans-serif;
+        font-family: 'greycliff-cf', sans-serif;
         font-size: 1rem;
         font-weight: 500;
         color: var(--silver-halide-grey);
@@ -206,7 +207,7 @@
     }
     .citation-link {
         text-decoration: none;
-        border-bottom: 1px solid transparent;
+        border-bottom: 1px solid var(--text-secondary);
         transition: border-color 0.3s ease;
     }
     .citation-link:hover {
@@ -227,7 +228,7 @@
     }
 
     .category-title {
-        font-family: 'Urbanist', sans-serif;
+        font-family: 'greycliff-cf', sans-serif;
         font-size: 1rem;
         font-weight: 600;
         color: var(--text-primary);

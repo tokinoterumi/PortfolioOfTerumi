@@ -1,58 +1,45 @@
+import capicoImage from '$lib/assets/capico-case-study-cover.png';
+import inboundStatsImage from '$lib/assets/inboundstats-case-study-cover.png';
+import capicarImage from '$lib/assets/capicar-case-study-cover.png';
+
 export const featuredProjects = [
 	{
 		id: 'capico',
-		title: 'Capico for YIC',
-		subtitle: 'Folklore Documentation Platform',
-		description: 'A full-stack web application for preserving and sharing traditional Japanese stories and customs. Built with SvelteKit and featuring advanced search, multimedia support, and community contributions.',
-		category: 'Development',
-		year: '2025',
+		title: 'Capico for YIC: An Operation Assistant for Visitor Center',
 		technologies: ['SvelteKit', 'PWA', 'Google Apps Script', 'Tailwind CSS'],
-		color: 'cyanotype-blue',
 		featured: true,
 		size: 'large',
-		image: '/projects/cultural-archive.jpg',
-		slug: 'capico-for-yic'
+		image: capicoImage,
+		slug: 'capico',
+		pdfPath: '/capicokeynote.pdf'
 	},
 	{
 		id: 'capicar',
-		title: 'CapiCar for YOS',
-		subtitle: 'Documentary Photography Series',
-		description: 'An intimate portrait series capturing the everyday moments and stories of Tokyo residents. Shot over 12 months across various districts.',
-		category: 'Photography',
-		year: '2025',
-		technologies: ['Documentary', 'Street Photography', 'Film & Digital'],
-		color: 'polaroid-yellow',
+		title: 'CapiCar: A Lightweight WES for Growing Small Business',
+		technologies: ['SwiftUI', 'Make', 'Express', 'Native App', 'Automation', 'Offline-First', 'Distributed Systems'],
 		featured: true,
 		size: 'medium',
-		image: '/projects/street-portraits.jpg',
-		slug: 'street-portraits'
+		image: capicarImage,
+		slug: 'capicar',
+		pdfPath: '/capicarkeynote.pdf'
 	},
 	{
 		id: 'inbound-stats',
-		title: 'Inbound Stats for YIC',
-		subtitle: 'Heritage Research Project',
-		description: 'Documenting traditional Japanese craftsmanship techniques and the artisans who preserve them. Combining oral history with visual documentation.',
-		category: 'Folklore',
-		year: '2023-2024',
-		technologies: ['Ethnographic Research', 'Oral History', 'Cultural Analysis'],
-		color: 'darkroom-red',
+		title: 'Inbound Stats @YIC: A Custom BI-Tool for Data-Driven Tourism',
+		technologies: ['Google Apps Script', 'Data Governance', 'Data-Driven System Building'],
 		featured: true,
 		size: 'medium',
-		image: '/projects/craft-traditions.jpg',
-		slug: 'craft-traditions'
+		image: inboundStatsImage,
+		slug: 'inbound-stats',
+		pdfPath: '/inboundstatskeynote.pdf'
 	},
 	{
 		id: 'streetcorner-photo-show-in-showayu',
 		title: 'A Corner Photo Show: The Stirring Seascape',
-		subtitle: 'Minimalist Web Design',
-		description: 'This portfolio website showcasing minimalist design principles and modern web technologies. Focus on performance and accessibility.',
-		category: 'Development',
-		year: '2024',
-		technologies: ['Vessels', 'Harbors', 'Furusato'],
-		color: 'cyanotype-blue',
+		technologies: ['Vessels', 'Harbors', 'Shikoku', 'Setouchi', 'Pacific Ocean'],
 		featured: true,
 		size: 'small',
-		image: '/projects/portfolio-site.jpg',
+		image: 'https://ioucafusxjuxhwrh.public.blob.vercel-storage.com/poster-in-showayu.jpg',
 		slug: 'streetcorner-photo-show-in-showayu'
 	}
 ];
@@ -73,7 +60,12 @@ export function getFeaturedProjects() {
 
 // Helper function to get projects by category
 export function getProjectsByCategory(category) {
-	return allProjects.filter(project => 
+	return allProjects.filter(project =>
 		project.category.toLowerCase() === category.toLowerCase()
 	);
+}
+
+// Helper function to get project by slug
+export function getProjectBySlug(slug) {
+	return allProjects.find(project => project.slug === slug);
 }

@@ -40,8 +40,8 @@ export default {
 
 			// Custom font families
 			fontFamily: {
-				sans: ['Urbanist', 'DM Sans', 'sans-serif'],
-				serif: ['Urbanist', 'DM Sans', 'sans-serif'],
+				sans: ['greycliff-cf', 'DM Sans', 'sans-serif'],
+				serif: ['greycliff-cf', 'DM Sans', 'sans-serif'],
 				display: ['Bebas Neue', 'sans-serif'],
 				dm: ['DM Sans', 'sans-serif']
 			},

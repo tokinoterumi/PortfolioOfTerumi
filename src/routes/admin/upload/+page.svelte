@@ -31,7 +31,7 @@
 
 			const response = await fetch('/admin/upload', {
 				method: 'POST',
-				// The browser will automatically set the correct 'multipart/form-data' header.
+				// The browser will automatically set the correct 'multipart/form-project-content' header.
 				body: formData
 			});
 
@@ -141,7 +141,7 @@
     }
 
     .title {
-        font-family: 'Urbanist', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 2rem;
         font-weight: 600;
         color: var(--text-primary, #333);
@@ -190,7 +190,7 @@
         border: 1px solid var(--text-primary, #333);
         color: var(--text-primary, #333);
         padding: 0.75rem 1.5rem;
-        font-family: 'Urbanist', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-weight: 500;
         font-size: 1rem;
         letter-spacing: 0.025em;

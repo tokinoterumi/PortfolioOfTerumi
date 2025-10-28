@@ -19,7 +19,7 @@ export async function fetchUserPhotos(username = unsplashConfig.username, option
 
 		const photos = await response.json();
 		
-		// Transform the data to match our needs
+		// Transform the project-content to match our needs
 		return photos.map(photo => ({
 			id: photo.id,
 			description: photo.description || photo.alt_description || '',

@@ -4,13 +4,9 @@ export const siteData = {
 	description: "Portfolio of Terumi - A creator at the intersection of technology and humanities. Developer, Photographer, Folklorist.",
 	url: "https://terumi.dev",
 	social: {
-		github: "https://github.com/terumi",
-		linkedin: "https://linkedin.com/in/terumi", 
-		instagram: "https://instagram.com/terumi.photo"
-	},
-	contact: {
-		email: "hello@terumi.dev",
-		location: "Tokyo, Japan"
+		github: "https://github.com/tokinoterumi",
+		linkedin: "https://www.linkedin.com/in/terumi-tokino",
+		unsplash: "https://instagram.com/terumi.photo"
 	},
 	tech: {
 		framework: "SvelteKit",

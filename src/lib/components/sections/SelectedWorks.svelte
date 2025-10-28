@@ -38,55 +38,28 @@
 		<div class="relative mb-24 flex justify-end pr-8 lg:justify-start lg:pr-0 lg:pl-4">
 			<div class="relative z-10 max-w-2xl text-right lg:text-left">
 				<h2
-					class="mb-4 leading-tight font-light md:text-4xl lg:text-4xl"
+					class="mb-4 leading-tight font-bold text-4xl"
 					style="color: #333333;"
 				>
-					Systems to Stories
+					HANDPRINTS
 				</h2>
-			</div>
-
-			<div
-				class="absolute top-1/2 right-0 z-0 -translate-y-2/5 text-gray-300 opacity-60 lg:right-auto lg:left-0 lg:-translate-y-1/2"
-			>
-				<svg
-					width="80"
-					height="80"
-					viewBox="0 0 80 80"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-20 w-20"
+				<p
+					class="m-0 text-lg leading-relaxed font-normal"
+					style="font-family: 'Inter', sans-serif; color: #AAB2BD;"
 				>
-					<!-- The outlined square -->
-					<rect
-						x="5"
-						y="5"
-						width="70"
-						height="70"
-						stroke="currentColor"
-						stroke-width="2"
-						vector-effect="non-scaling-stroke"
-					/>
-					<!-- The filled square, with a new class for animation -->
-					<rect
-						x="0"
-						y="0"
-						width="60"
-						height="60"
-						fill="currentColor"
-						class="cubic-bezier-[0.25,1,0.5,1] inner-rect transition-transform duration-[400ms]"
-					/>
-				</svg>
+					A crafter's journal
+				</p>
 			</div>
 		</div>
 
 		<!-- Projects Grid -->
 		<div
-			class="mb-24 grid grid-cols-[2fr_1fr_1fr] grid-rows-[auto_auto] gap-8 md:grid-cols-1 md:gap-6 lg:grid-cols-2 lg:gap-6"
+			class="mb-24 grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12"
 			class:animate-projects={isVisible}
 		>
 			{#each featuredProjects as project, i (project.id)}
 				<article
-					class="project-card translate-y-8 opacity-0 {project.size}"
+					class="project-card translate-y-8 opacity-0"
 					class:delay-1={i === 1}
 					class:delay-2={i === 2}
 					class:delay-3={i === 3}
@@ -95,29 +68,23 @@
 						href="/projects/{project.slug}"
 						class="block h-full text-inherit no-underline transition-transform duration-[400ms] ease-in-out"
 					>
-						<!-- Project Image -->
+						<!-- Project Image with 3:2 aspect ratio -->
 						<div
-							class="large:h-80 small:h-40 relative h-52 overflow-hidden bg-gray-100 transition-transform duration-[400ms] ease-in-out md:h-48"
+							class="relative overflow-hidden bg-gray-100 transition-transform duration-[400ms] ease-in-out"
+							style="aspect-ratio: 3 / 2;"
 						>
-							<div
-								class="flex h-full w-full items-center justify-center bg-gradient-to-br from-stone-50 via-stone-200 to-stone-50"
-							>
-								<!-- Placeholder background when image doesn't exist -->
-								<div class="text-center">
-									<span
-										class="text-sm font-medium tracking-wider uppercase"
-										style="color: #AAB2BD;"
-									>
-										{project.category}
-									</span>
-								</div>
-							</div>
+							<img
+								src={project.image}
+								alt={project.title}
+								class="h-full w-full object-cover"
+							class:object-top={project.id === 'inbound-stats' || project.id === 'streetcorner-photo-show-in-showayu'}
+							/>
 						</div>
 
 						<!-- Project Info -->
-						<div class="large:py-8 small:py-5 flex flex-col gap-4 py-6">
+						<div class="flex flex-col gap-4 py-6">
 							<h3
-								class="large:text-2xl m-0 text-xl leading-tight font-semibold"
+								class="m-0 text-xl leading-tight font-semibold"
 								style="color: #333333;"
 							>
 								{project.title}
@@ -150,53 +117,14 @@
 </section>
 
 <style>
-	/* Grid Layout Sizes */
-	.project-card.large {
-		grid-column: 1;
-		grid-row: 1 / 3; /* Span two rows */
-	}
-
-	.project-card.medium:nth-child(2) {
-		grid-column: 2;
-		grid-row: 1;
-	}
-
-	.project-card.medium:nth-child(3) {
-		grid-column: 3;
-		grid-row: 1;
-	}
-
-	.project-card.small {
-		grid-column: 2 / 4; /* Span two columns */
-		grid-row: 2;
-	}
-
-	/* Size-specific styles */
-	.project-card.large .h-52 {
-		height: 20rem; /* 320px */
-	}
-
-	.project-card.small .h-52 {
-		height: 10rem; /* 160px */
-	}
-
 	/* Hover effects */
-	.project-card a:hover .h-52 {
+	.project-card a:hover > div:first-child {
 		transform: scale(1.05);
 	}
 
 	.project-card a:hover .view-case-study {
 		opacity: 1;
 		transform: translateY(0);
-	}
-
-	/* SVG animation */
-	.inner-rect {
-		transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-	}
-
-	section:hover .inner-rect {
-		transform: translate(5px, 5px);
 	}
 
 	/* Animation keyframes */
@@ -228,46 +156,6 @@
 		animation-delay: 0.45s;
 	}
 
-	/* Removed unused CSS selector */
-
-	/* Responsive grid adjustments */
-	@media (max-width: 1024px) {
-		.project-card.large {
-			grid-column: 1 / 3;
-			grid-row: 1;
-		}
-
-		.project-card.medium:nth-child(2) {
-			grid-column: 1;
-			grid-row: 2;
-		}
-
-		.project-card.medium:nth-child(3) {
-			grid-column: 2;
-			grid-row: 2;
-		}
-
-		.project-card.small {
-			grid-column: 1 / 3;
-			grid-row: 3;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.project-card.large,
-		.project-card.medium,
-		.project-card.small {
-			grid-column: 1;
-			grid-row: auto;
-		}
-
-		.project-card .h-52,
-		.project-card.large .h-52,
-		.project-card.small .h-52 {
-			height: 12rem !important; /* 192px */
-		}
-	}
-
 	/* Reduced Motion */
 	@media (prefers-reduced-motion: reduce) {
 		.project-card {
@@ -280,15 +168,7 @@
 			animation: none !important;
 		}
 
-		.project-card a:hover .h-52 {
-			transform: none !important;
-		}
-
 		.view-case-study {
-			transition: none !important;
-		}
-
-		.inner-rect {
 			transition: none !important;
 		}
 	}

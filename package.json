@@ -30,6 +30,8 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
-		"@vercel/blob": "^1.1.1"
+		"@vercel/blob": "^1.1.1",
+		"marked": "^16.2.1",
+		"pdfjs-dist": "^5.4.296"
 	}
 }

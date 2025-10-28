@@ -1,9 +1,8 @@
 <script>
-	// --- 專案數據 ---
+	import LanguageSwitch from '$lib/components/ui/LanguageSwitch.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import { currentLanguage } from '$lib/stores/language.js';
 	const projectData = {
-		posterImage: 'https://ioucafusxjuxhwrh.public.blob.vercel-storage.com/poster-in-showayu.jpg',
-		title: 'A Corner Photo Show: <br/> The Stirring Seascape',
-		tagline: '在百年歷史的公共錢湯中舉辦的展覽，記錄港口與船隻動人心弦的風景。',
 		exhibitionPhotoGroups: [
 			// Group 1
 			[
@@ -125,9 +124,29 @@
 		afterword: 'https://ioucafusxjuxhwrh.public.blob.vercel-storage.com/%E3%82%A2%E3%83%88%E3%82%AB%E3%82%99%E3%82%AD%20for%20Portfolio.jpg',
 		index: 'https://ioucafusxjuxhwrh.public.blob.vercel-storage.com/Index%20for%20Portfolio.jpg',
 	};
+	const caseStudyData = {
+		en: {
+			title: 'A Corner Photo Show: <br/> The Stirring Seascape',
+			coverImage: 'https://ioucafusxjuxhwrh.public.blob.vercel-storage.com/poster-in-showayu.jpg',
+			overview: {
+				Role: 'Photographer, Curator',
+				Timeline: '2 Months',
+			}
+		},
+		ja: {
+			title: '小さな写真展 in 昭和湯 <br/> 〜みなととふねと心揺さぶる風景〜',
+			coverImage: 'https://ioucafusxjuxhwrh.public.blob.vercel-storage.com/poster-in-showayu.jpg',
+			overview: {
+				役割: '撮影、企画',
+				期間: '2ヶ月間 (2022年)',
+			}
+		}
+	};
 
 	let isGroupLightboxOpen = $state(false);
 	let currentGroupIndex = $state(0);
+
+	const content = $derived(caseStudyData[$currentLanguage] || caseStudyData['en']);
 
 	function openGroupLightbox(groupIndex) {
 		currentGroupIndex = groupIndex;
@@ -153,39 +172,51 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
+<article class="case-study">
 <div class="case-study-container mx-auto max-w-6xl px-6 py-24 md:py-32">
+	<!-- Back to Homepage Button -->
+	<div class="mb-12">
+		<Button href="/" variant="secondary" icon="<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='square' stroke-linejoin='miter' stroke-width='2' d='M10 19l-7-7m0 0l7-7m-7 7h18'/></svg>">
+			Back to Homepage
+		</Button>
+	</div>
+
 	<!-- Part 1: The Cover -->
 	<header class="mb-24 grid grid-cols-1 items-end gap-12 md:mb-32 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
-		<!-- 左欄：海報 -->
-		<div class="poster-container">
+		<div class="cover-container">
 			<img
-				src={projectData.posterImage}
-				alt="Poster in Showa-Yu"
-				class="mx-auto w-auto object-contain shadow-xl"
+				src={content.coverImage}
+				alt={content.title}
+				class="mx-auto w-full max-w-md shadow-xl"
 			/>
 		</div>
-		<!-- 右欄：標題與概述 -->
 		<div class="text-content text-center lg:text-left">
-			<h1
-				class="text-5xl font-light leading-tight text-[var(--text-primary)]"
-			>
-				{@html projectData.title}
+			<div class="language-switch-container mb-4 flex justify-center lg:justify-end">
+				<LanguageSwitch />
+			</div>
+			<h1 class="title font-['greycliff-cf'] text-4xl font-semibold leading-tight text-[var(--text-primary)]">
+				{@html content.title}
 			</h1>
-			<p class="mt-8 max-w-prose font-['DM_Sans'] text-lg leading-relaxed text-[var(--text-secondary)]">
-				{projectData.tagline}
-			</p>
+			<section class="overview-section mt-8">
+				{#each Object.entries(content.overview) as [key, value]}
+					<div class="overview-item">
+						<span class="overview-key">{key}</span>
+						<span class="overview-value">{value}</span>
+					</div>
+				{/each}
+			</section>
 		</div>
 	</header>
 
 	<!-- Part 2: The Exhibition Works -->
-	<section class="mb-24 md:mb-32">
+	<section class="mb-24 md:mb-24">
 		{#each projectData.exhibitionPhotoGroups as photoGroup, groupIndex}
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 mb-8">
 				{#each photoGroup as photo}
 					<button
 						class="group relative aspect-[3/2] w-full cursor-pointer overflow-hidden border-0 bg-gray-100 p-0"
 						on:click={() => openGroupLightbox(groupIndex)}
-						aria-label="查看展覽作品組合"
+						aria-label="Click to view the photo set"
 					>
 						<img
 							src={photo.src}
@@ -195,7 +226,7 @@
 						<div
 							class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 						>
-							<span class="font-['Urbanist'] text-4xl font-light text-white">+</span>
+							<span class="font-['greycliff-cf'] text-4xl font-light text-white">+</span>
 						</div>
 					</button>
 				{/each}
@@ -208,14 +239,14 @@
 
 	<!-- Part 3: The Story & The Proof -->
 	<section class="mx-auto max-w-4xl">
-		<h2 class="mb-8 text-center font-['Urbanist'] text-3xl font-light text-[var(--text-primary)]">
+		<h2 class="mb-8 text-center font-['greycliff-cf'] text-3xl font-semibold text-[var(--text-primary)]">
 			The Venue as a Canvas
 		</h2>
 		<div class="prose prose-lg mx-auto text-left font-['DM_Sans'] text-[var(--text-secondary)]">
 			<p>
 				One of the core challenges was to respectfully integrate the photographs into the historic
 				Sento space without disrupting its unique atmosphere. The photos were carefully placed along
-				the tiled walls, creating a dialogue between the art and the environment...
+				the tiled walls, creating a dialogue between the art and the environment.
 			</p>
 		</div>
 		<figure class="mt-12">
@@ -225,7 +256,7 @@
 				class="w-full"
 			/>
 			<figcaption class="mt-4 text-center font-['DM_Sans'] text-sm text-[var(--silver-halide-grey)]">
-				The final exhibition in situ at Showa-yu.
+				The final display at Showa-Yu
 			</figcaption>
 		</figure>
 
@@ -243,13 +274,13 @@
 				/>
 			</div>
 			<figcaption class="mt-4 text-center font-['DM_Sans'] text-sm text-[var(--silver-halide-grey)]">
-				Curator's afterword and index.
+				Curator's afterword and index
 			</figcaption>
 		</figure>
 	</section>
 </div>
+</article>
 
-<!-- MODIFIED: Group Lightbox with improved centering and spacing -->
 {#if isGroupLightboxOpen}
 	<div
 		class="fixed inset-0 z-[2000] flex cursor-pointer items-center justify-center bg-black/90 p-8 backdrop-blur-sm md:p-16"
@@ -278,3 +309,35 @@
 		</div>
 	</div>
 {/if}
+
+<style>
+    .overview-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .overview-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .overview-key {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--silver-halide-grey);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .overview-value {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1rem;
+        color: var(--text-primary);
+    }
+</style>
