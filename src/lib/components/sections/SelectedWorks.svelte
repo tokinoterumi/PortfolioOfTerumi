@@ -35,7 +35,7 @@
 >
 	<div class="container mx-auto max-w-6xl px-8 2xl:max-w-7xl">
 		<!-- Section Header -->
-		<div class="relative mb-24 flex justify-end pr-8 lg:justify-start lg:pr-0 lg:pl-4">
+		<div class="relative mb-12 flex justify-end pr-8 lg:justify-start lg:pr-0 lg:pl-4">
 			<div class="relative z-10 max-w-2xl text-right lg:text-left">
 				<h2
 					class="mb-4 leading-tight font-bold text-4xl"

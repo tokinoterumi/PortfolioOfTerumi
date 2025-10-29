@@ -17,7 +17,7 @@
 		class:active={$currentLanguage === 'ja'}
 		on:click={() => setLanguage('ja')}
 	>
-		JP
+		JA
 	</button>
 </div>
 

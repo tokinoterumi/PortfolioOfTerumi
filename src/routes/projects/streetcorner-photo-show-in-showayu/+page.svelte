@@ -194,7 +194,7 @@
 			<div class="language-switch-container mb-4 flex justify-center lg:justify-end">
 				<LanguageSwitch />
 			</div>
-			<h1 class="title font-['greycliff-cf'] text-4xl font-semibold leading-tight text-[var(--text-primary)]">
+			<h1 class="title font-['greycliff-cf','IBM_Plex_Sans_JP',sans-serif] text-4xl font-semibold leading-tight text-[var(--text-primary)]">
 				{@html content.title}
 			</h1>
 			<section class="overview-section mt-8">
@@ -327,7 +327,7 @@
     }
 
     .overview-key {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', 'IBM Plex Sans JP', sans-serif;
         font-size: 0.875rem;
         font-weight: 500;
         color: var(--silver-halide-grey);
@@ -336,7 +336,7 @@
     }
 
     .overview-value {
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'DM Sans', 'IBM Plex Sans JP', sans-serif;
         font-size: 1rem;
         color: var(--text-primary);
     }

@@ -7,14 +7,13 @@
 	$: isHomepage = $page.url.pathname === '/';
 </script>
 
-{#if isHomepage}
-	<BackToTop />
-{/if}
-
 <div class="app-container">
 	<main class="min-h-screen">
 		<slot />
 	</main>
+	{#if isHomepage}
+		<BackToTop />
+	{/if}
 	<Footer />
 </div>
 

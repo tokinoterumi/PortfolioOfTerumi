@@ -81,7 +81,7 @@
 <section class="px-0 py-32" style="background-color: #f8f8f7;" bind:this={sectionElement}>
 	<div class="mx-auto max-w-6xl px-4 2xl:max-w-7xl">
 		<!-- Section Header -->
-		<div class="mb-24 grid grid-cols-1 items-end gap-16 lg:mb-24 lg:grid-cols-[2fr_1fr] lg:gap-16">
+		<div class="mb-12 grid grid-cols-1 items-end gap-16 lg:grid-cols-[2fr_1fr] lg:gap-16">
 			<div class="lg:text-left">
 				<h2
 					class="mb-4 leading-tight font-bold text-4xl"

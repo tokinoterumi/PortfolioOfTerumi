@@ -11,7 +11,7 @@
 	const caseStudyData = {
 		en: {
 			title: 'CapiCar: A Lightweight WES for Growing Small Business',
-			subtitle: 'From a web prototype to a professional, offline-first iOS application designed to bring enterprise-grade logistics to growing businesses.',
+			subtitle: 'From a web prototype to an offline-first iOS application designed to bring professional logistics experience to growing businesses.',
 			coverImage: capicarImage,
 			overview: {
 				Role: 'Product Engineer, Full-Stack Developer',
@@ -20,8 +20,8 @@
 			}
 		},
 		ja: {
-			title: 'Capico：観光案内所の統合運用ハブ',
-			subtitle: 'バラバラだった手動プロセスを、安全で効率的なデジタルプラットフォームへ。',
+			title: 'CapiCar：中小企業のための軽量WES',
+			subtitle: 'プロの出荷体験を提供するためにPWAからネイティブへ進化',
 			coverImage: capicarImage,
 			overview: {
 				役割: 'プロダクトエンジニア、フルスタック開発者',
@@ -31,7 +31,8 @@
 		}
 	};
 
-	$: content = caseStudyData[$currentLanguage] || caseStudyData['en'];
+	$: content = caseStudyData[$currentLanguage] || caseStudyData['ja'];
+	$: caseStudyHtml = data.caseStudyContent?.[$currentLanguage] || data.caseStudyContent?.ja || '';
 </script>
 
 <article class="case-study">
@@ -56,10 +57,10 @@
 				<div class="language-switch-container mb-4 flex justify-center lg:justify-end">
 					<LanguageSwitch />
 				</div>
-				<h1 class="title font-['greycliff-cf'] text-4xl font-semibold leading-tight text-[var(--text-primary)]">
+				<h1 class="title font-['greycliff-cf','IBM_Plex_Sans_JP',sans-serif] text-4xl font-semibold leading-tight text-[var(--text-primary)]">
 					{content.title}
 				</h1>
-				<p class="subtitle mt-8 max-w-prose font-['DM_Sans'] text-lg leading-relaxed text-[var(--text-secondary)]">
+				<p class="subtitle mt-8 max-w-prose font-['DM_Sans','IBM_Plex_Sans_JP',sans-serif] text-lg leading-relaxed text-[var(--text-secondary)]">
 					{content.subtitle}
 				</p>
 				<section class="overview-section mt-8">
@@ -75,7 +76,7 @@
 
 		<!-- Portfolio Deck Section -->
 		{#if data.project?.pdfPath}
-			<div class="pdf-section mx-auto max-w-6xl px-6 mb-24">
+			<div class="pdf-section max-w-6xl mb-24 px-0 md:px-6">
 				<PdfViewer src={data.project.pdfPath} />
 			</div>
 		{/if}
@@ -83,7 +84,7 @@
 		<!-- Main Content -->
 		<div class="prose-container mx-auto max-w-4xl px-6">
 			<section class="prose">
-				{@html data.caseStudyContent}
+				{@html caseStudyHtml}
 			</section>
 		</div>
 	</div>
@@ -106,7 +107,7 @@
     }
 
     .overview-key {
-        font-family: 'greycliff-cf', sans-serif;
+        font-family: 'greycliff-cf', 'IBM Plex Sans JP', sans-serif;
         font-size: 0.875rem;
         font-weight: 500;
         color: var(--silver-halide-grey);
@@ -115,7 +116,7 @@
     }
 
     .overview-value {
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'DM Sans', 'IBM Plex Sans JP', sans-serif;
         font-size: 1rem;
         color: var(--text-primary);
     }
@@ -123,13 +124,13 @@
     /* --- Prose Styling --- */
     /* We use :global because the content is coming from a slot or markdown */
     :global(.prose) {
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'DM Sans', 'IBM Plex Sans JP', sans-serif;
         font-size: 1.125rem;
         line-height: 1.9;
         color: var(--text-secondary);
     }
     :global(.prose h1) {
-        font-family: 'greycliff-cf', sans-serif;
+        font-family: 'greycliff-cf', 'IBM Plex Sans JP', sans-serif;
         font-size: 2.5rem;
         font-weight: 700;
         color: var(--text-primary);
@@ -138,7 +139,7 @@
         line-height: 1.2;
     }
     :global(.prose h2) {
-        font-family: 'greycliff-cf', sans-serif;
+        font-family: 'greycliff-cf', 'IBM Plex Sans JP', sans-serif;
         font-size: 2rem;
         font-weight: 600;
         color: var(--text-primary);
@@ -148,7 +149,7 @@
         border-bottom: 1px solid rgba(0,0,0,0.1);
     }
     :global(.prose h3) {
-        font-family: 'greycliff-cf', sans-serif;
+        font-family: 'greycliff-cf', 'IBM Plex Sans JP', sans-serif;
         font-size: 1.5rem;
         font-weight: 600;
         color: var(--text-primary);
@@ -157,7 +158,7 @@
         margin-left: 2rem;
     }
     :global(.prose h4) {
-        font-family: 'greycliff-cf', sans-serif;
+        font-family: 'greycliff-cf', 'IBM Plex Sans JP', sans-serif;
         font-size: 1.25rem;
         font-weight: 600;
         color: var(--text-primary);

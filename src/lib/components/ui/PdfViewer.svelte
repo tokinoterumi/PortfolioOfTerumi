@@ -12,6 +12,7 @@
 	let mounted = false;
 	let isFullscreen = false;
 	let viewerElement;
+	let showFullscreenButton = true;
 
 	async function loadPDF() {
 		if (!browser) return;
@@ -158,26 +159,46 @@
 		}
 	}
 
-	function toggleFullscreen() {
+	async function toggleFullscreen() {
 		if (!browser || !viewerElement) return;
 
 		if (!isFullscreen) {
 			// Enter fullscreen
-			if (viewerElement.requestFullscreen) {
-				viewerElement.requestFullscreen();
-			} else if (viewerElement.webkitRequestFullscreen) {
-				viewerElement.webkitRequestFullscreen();
-			} else if (viewerElement.msRequestFullscreen) {
-				viewerElement.msRequestFullscreen();
+			try {
+				if (viewerElement.requestFullscreen) {
+					await viewerElement.requestFullscreen();
+				} else if (viewerElement.webkitRequestFullscreen) {
+					// Safari desktop
+					viewerElement.webkitRequestFullscreen();
+				} else if (viewerElement.webkitEnterFullscreen) {
+					// iOS Safari (only works for video elements, but try anyway)
+					viewerElement.webkitEnterFullscreen();
+				} else if (viewerElement.mozRequestFullScreen) {
+					// Firefox
+					viewerElement.mozRequestFullScreen();
+				} else if (viewerElement.msRequestFullscreen) {
+					// IE/Edge
+					viewerElement.msRequestFullscreen();
+				} else {
+					console.warn('Fullscreen API is not supported on this device');
+				}
+			} catch (error) {
+				console.error('Error entering fullscreen:', error);
 			}
 		} else {
 			// Exit fullscreen
-			if (document.exitFullscreen) {
-				document.exitFullscreen();
-			} else if (document.webkitExitFullscreen) {
-				document.webkitExitFullscreen();
-			} else if (document.msExitFullscreen) {
-				document.msExitFullscreen();
+			try {
+				if (document.exitFullscreen) {
+					await document.exitFullscreen();
+				} else if (document.webkitExitFullscreen) {
+					document.webkitExitFullscreen();
+				} else if (document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if (document.msExitFullscreen) {
+					document.msExitFullscreen();
+				}
+			} catch (error) {
+				console.error('Error exiting fullscreen:', error);
 			}
 		}
 	}
@@ -186,6 +207,8 @@
 		isFullscreen = !!(
 			document.fullscreenElement ||
 			document.webkitFullscreenElement ||
+			document.webkitCurrentFullScreenElement ||
+			document.mozFullScreenElement ||
 			document.msFullscreenElement
 		);
 		// Re-render to fit new dimensions
@@ -196,18 +219,26 @@
 
 	onMount(() => {
 		mounted = true;
+
+		// Detect iOS devices and hide fullscreen button
+		const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+		              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+		showFullscreenButton = !isIOS;
+
 		loadPDF();
 		window.addEventListener('keydown', handleKeydown);
 		window.addEventListener('resize', handleResize);
 		document.addEventListener('fullscreenchange', handleFullscreenChange);
 		document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-		document.addEventListener('msfullscreenchange', handleFullscreenChange);
+		document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+		document.addEventListener('MSFullscreenChange', handleFullscreenChange);
 		return () => {
 			window.removeEventListener('keydown', handleKeydown);
 			window.removeEventListener('resize', handleResize);
 			document.removeEventListener('fullscreenchange', handleFullscreenChange);
 			document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-			document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+			document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+			document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
 		};
 	});
 </script>
@@ -234,19 +265,21 @@
 			</svg>
 		</button>
 
-		<button class="nav-button fullscreen-button" on:click={toggleFullscreen} aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}>
-			{#if isFullscreen}
-				<!-- Exit fullscreen icon -->
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
-				</svg>
-			{:else}
-				<!-- Enter fullscreen icon -->
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-				</svg>
-			{/if}
-		</button>
+		{#if showFullscreenButton}
+			<button class="nav-button fullscreen-button" on:click={toggleFullscreen} aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}>
+				{#if isFullscreen}
+					<!-- Exit fullscreen icon -->
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+					</svg>
+				{:else}
+					<!-- Enter fullscreen icon -->
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+					</svg>
+				{/if}
+			</button>
+		{/if}
 	</div>
 </div>
 
@@ -361,8 +394,14 @@
 
 	/* Mobile */
 	@media (max-width: 768px) {
+		.pdf-viewer {
+			width: 100%;
+			max-width: 100%;
+		}
+
 		.pdf-canvas-container {
 			min-height: 300px;
+			width: 100%;
 		}
 
 		.pdf-controls {
