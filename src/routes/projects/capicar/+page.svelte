@@ -4,6 +4,7 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import { currentLanguage } from '$lib/stores/language.js';
 	import capicarImage from '$lib/assets/capicar-details-cover.jpg';
+	import VideoModal from '$lib/components/ui/VideoModal.svelte';
 
 	// Get project-content from the server load function
 	export let data;
@@ -83,6 +84,10 @@
 
 		<!-- Main Content -->
 		<div class="prose-container mx-auto max-w-4xl px-6">
+			<section id="demo" class="my-12">
+				<h2 class="text-2xl font-semibold mb-4 text-center">Demo Video</h2>
+				<VideoModal videoId="j5SalV4v0p4" />
+			</section>
 			<section class="prose">
 				{@html caseStudyHtml}
 			</section>
