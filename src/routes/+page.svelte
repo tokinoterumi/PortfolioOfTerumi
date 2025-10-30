@@ -10,6 +10,10 @@
 	const photos = data.photos || [];
 </script>
 
+<svelte:head>
+	<title>Drifting Islander</title>
+</svelte:head>
+
 <div>
 	<section>
 		<Hero />
