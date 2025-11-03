@@ -6,7 +6,7 @@ export const siteData = {
 	social: {
 		github: "https://github.com/tokinoterumi",
 		linkedin: "https://www.linkedin.com/in/terumi-tokino",
-		unsplash: "https://instagram.com/terumi.photo"
+		unsplash: "https://unsplash.com/@driftingislander"
 	},
 	tech: {
 		framework: "SvelteKit",
