@@ -5,7 +5,7 @@
 	export let ariaLabel = null;
 
 	const variantClasses = {
-		primary: 'border-[var(--darkroom-red)] text-[var(--darkroom-red)] hover:bg-[var(--darkroom-red)]',
+		primary: 'border-[var(--text-primary)] text-[var(--text-primary)] hover:bg-[var(--darkroom-red)] hover:border-[var(--darkroom-red)]',
 		secondary: 'border-[var(--text-primary)] text-[var(--text-primary)] hover:bg-[var(--text-primary)]'
 	};
 </script>

@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	// Props for API integration
 	let { photos = [] } = $props();
@@ -140,6 +141,13 @@
 				</p>
 			</div>
 		{/if}
+
+		<!-- CTA Button -->
+		<div class="flex justify-center">
+			<Button href="https://unsplash.com/@driftingislander" variant="primary">
+				VIEW MORE
+			</Button>
+		</div>
 
 	</div>
 </section>
