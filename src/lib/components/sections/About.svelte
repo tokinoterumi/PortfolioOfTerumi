@@ -1,6 +1,6 @@
 <script>
 	const impact = {
-		views: '770K+',
+		views: '810K+',
 		downloads: '4K+',
 		citation: {
 			label: 'World Economic Forum',
