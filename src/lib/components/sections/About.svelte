@@ -1,7 +1,7 @@
 <script>
 	const impact = {
-		views: '870K+',
-		downloads: '4K+',
+		views: '970K+',
+		downloads: '5K+',
 		citation: {
 			label: 'World Economic Forum',
 			link: 'https://jp.weforum.org/stories/2024/07/art-festival-impact-aging-communities/'
